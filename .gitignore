@@ -478,4 +478,4 @@ gradio_tmp/
 .env
 
 # aider files
-.aider.*
+.aider.*.env
