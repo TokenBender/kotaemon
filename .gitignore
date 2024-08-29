@@ -472,3 +472,10 @@ doc_env/
 # application data
 ktem_app_data/
 gradio_tmp/
+
+# env files
+.venv/
+.env
+
+# aider files
+.aider.*
