@@ -245,3 +245,30 @@ class LCAnthropicChat(LCChatMixin, ChatLLM):  # type: ignore
             raise ImportError("Please install langchain-anthropic")
 
         return ChatAnthropic
+
+
+class LCOpenRouterChatOpenAI(LCChatMixin, ChatLLM):
+    def __init__(
+        self,
+        openrouter_api_key: str | None = None,
+        model: str = "openai/gpt-3.5-turbo",
+        temperature: float = 0.7,
+        request_timeout: float | None = None,
+        **params,
+    ):
+        super().__init__(
+            openai_api_key=openrouter_api_key,
+            model=model,
+            temperature=temperature,
+            request_timeout=request_timeout,
+            base_url="https://openrouter.ai/api/v1",
+            **params,
+        )
+
+    def _get_lc_class(self):
+        try:
+            from langchain_openai import ChatOpenAI
+        except ImportError:
+            from langchain.chat_models import ChatOpenAI
+
+        return ChatOpenAI
